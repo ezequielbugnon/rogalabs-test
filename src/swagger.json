@@ -1,0 +1,65 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API do test para ROGALABS",
+        "description": "Essa API tem como objetivo mostrar habilidade do candidato",
+        "termsOfService": "",
+        "contact": {
+            "emai": "bugnonezequiel@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers":[
+        {
+            "url": "http://localhost:3000/api_test_rogalabs/v1/",
+            "description": "API de test"
+        },
+        {
+            "url": "http://localhost:3000/api_test_rogalabs/v1/",
+            "description": "API de produccion"
+        }
+    ],
+    "paths": {
+        "/token/{name}": {
+            "get": {
+                "sumary": "rota para obter token",
+                "description": "Essa rota sera resposavél de dar um token",
+                "tags": ["token"],
+                "parameters":[
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "nome do usuario",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized, send a name"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Token"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "token": {
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
