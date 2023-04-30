@@ -11,9 +11,13 @@ import { getCep } from "../utils/getCep.js";
 
 export const getController = async (req, res) => {
   try {
-    const repo = await getRepository();
+    const [rows] = await getRepository();
 
-    res.status(200).json({ Pessoas: repo[0] });
+    if (rows.length <= 0) {
+      return res.status(404).json({ message: "Person not found" });
+    }
+
+    res.status(200).json({ Pessoas: rows });
   } catch (error) {
     console.log(error);
     res.status(500).json("an error occurred");
@@ -103,6 +107,9 @@ export const deleteController = async (req, res) => {
       const {id} = req.params;
       if(id !== null){
         const repo = await deleteRepository(id);
+        if (repo[0].affectedRows === 0){
+          return res.status(404).json({ message: "Person not found" });
+        }
         res.status(200).json({ affectedRows: repo[0].affectedRows });
       }
       
