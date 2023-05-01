@@ -42,7 +42,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Token"
+                                    "$ref": "#/components/schemas/token"
                                 }
                             }
                         }
