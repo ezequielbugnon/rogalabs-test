@@ -1,21 +1,27 @@
 
-import { Router } from "express";
+export class TokenRouter{
+    constructor(router, token ) {
+        this.router = router;
+        this.token = token;
+        this.routes();
+    }
 
-const router = Router();
+    routes(){
+      this.router.get('/token/:name', async (req, res) => {
 
-import token from '../jwt/index.js';
+         const {name} = req.params;
+      
+         if(name === "" || name === undefined){
+            res.status(401).json("Unauthorized, send a name")
+         }
+      
+         const response = await this.token.create({'name': name})
+      
+         res.status(200).json({token: response})
+      });
+    }
 
-router.get('/token/:name', async (req, res) => {
-
-   const {name} = req.params;
-
-   if(name === "" || name === undefined){
-      res.status(401).json("Unauthorized, send a name")
-   }
-
-   const response = await token.create({'name': name})
-
-   res.status(200).json({token: response})
-});
-
-export default router;
+    start(){
+        return this.router;
+    }
+}

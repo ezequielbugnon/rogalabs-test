@@ -1,23 +1,44 @@
-import express from "express";
-import {
-  getController,
-  getOneController,
-  postController,
-  updateController,
-  deleteController,
-} from "../controllers/person.controller.js";
+export class PersonRouter {
+  constructor(router, personController, token) {
+    this.router = router;
+    this.personController = personController;
+    this.token = token;
+    this.routes();
+  }
 
-const router = express.Router();
-import token from "../jwt/index.js";
+  routes() {
+    this.router.get(
+      "/pessoa",
+      this.token.check,
+      this.personController.getController
+    );
 
-router.get("/pessoa", token.check, getController);
+    this.router.get(
+      "/pessoa/:id",
+      this.token.check,
+      this.personController.getOneController
+    );
 
-router.get("/pessoa/:id", token.check, getOneController);
+    this.router.post(
+      "/pessoa",
+      this.token.check,
+      this.personController.postController
+    );
 
-router.post("/pessoa", token.check, postController);
+    this.router.patch(
+      "/pessoa/:id",
+      this.token.check,
+      this.personController.updateController
+    );
 
-router.patch("/pessoa/:id", token.check, updateController);
+    this.router.delete(
+      "/pessoa/:id",
+      this.token.check,
+      this.personController.deleteController
+    );
+  }
 
-router.delete("/pessoa/:id", token.check, deleteController);
-
-export default router;
+  start() {
+    return this.router;
+  }
+}

@@ -1,13 +1,42 @@
-import express from "express";
-const router = express.Router();
-import {getController, getOneController, deleteController, postController, updateController} from '../controllers/annotation.controller.js'
-import token from "../jwt/index.js";
+export class AnnotationRouter {
+  constructor(router, annotationController, token) {
+    this.router = router;
+    this.annotationController = annotationController;
+    this.token = token;
+    this.routes();
+  }
 
-router.get("/anotacao", token.check, getController);
-router.get("/anotacao/:id", token.check, getOneController);
-router.post("/anotacao", token.check, postController);
-router.delete("/anotacao/:id", token.check, deleteController);
-router.patch("/anotacao/:id", token.check, updateController);
+  routes() {
+    this.router.get(
+      "/anotacao",
+      this.token.check,
+      this.annotationController.getController
+    );
+    this.router.get(
+      "/anotacao/:id",
+      this.token.check,
+      this.annotationController.getOneController
+    );
+    this.router.post(
+      "/anotacao",
+      this.token.check,
+      this.annotationController.postController
+    );
+    this.router.delete(
+      "/anotacao/:id",
+      this.token.check,
+      this.annotationController.deleteController
+    );
+    this.router.patch(
+      "/anotacao/:id",
+      this.token.check,
+      this.annotationController.updateController
+    );
+  }
 
+  start() {
+    return this.router;
+  }
+}
 
-export default router;
+export default AnnotationRouter;
