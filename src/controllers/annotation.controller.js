@@ -9,7 +9,7 @@ export class AnnotationController {
     try {
       const [rows] = await this.repo.getAll();
       if (rows.length <= 0) {
-        return res.status(404).json({ message: "Anotação not found" });
+        return res.status(404).json({ message: "Annotation not found" });
       }
 
       res.status(200).json({ Anotação: rows });
@@ -26,7 +26,7 @@ export class AnnotationController {
         const [rows] = await this.repo.getOne(id);
 
         if (rows.length <= 0) {
-          return res.status(404).json({ message: "Anotação not found" });
+          return res.status(404).json({ message: "Annotation not found" });
         }
 
         res.status(200).json({ Anotação: rows });
@@ -51,7 +51,7 @@ export class AnnotationController {
         await this.repo.post(value);
         return res
           .status(200)
-          .json({ response: "Anotação inserted correctly" });
+          .json({ response: "Annotation inserted correctly" });
       } catch (error) {
         console.log(error);
         return res.status(500).json("an error occurred");
@@ -75,12 +75,12 @@ export class AnnotationController {
         console.log(rows);
 
         if (rows.affectedRows === 0) {
-          return res.status(404).json({ message: "Anotação not found" });
+          return res.status(404).json({ message: "Annotation not found" });
         }
 
         return res
           .status(200)
-          .json({ response: "Anotação inserted correctly" });
+          .json({ response: "Annotation inserted correctly" });
       } catch (error) {
         console.log(error);
         return res.status(500).json("an error occurred");
@@ -94,7 +94,7 @@ export class AnnotationController {
       if (id !== null) {
         const repo = await this.repo.deleteOne(id);
         if (repo[0].affectedRows === 0) {
-          return res.status(404).json({ message: "Anotação not found" });
+          return res.status(404).json({ message: "Annotation not found" });
         }
         res.status(200).json({ affectedRows: repo[0].affectedRows });
       }

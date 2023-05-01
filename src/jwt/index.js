@@ -16,8 +16,10 @@ token.check = async (req, res, next) => {
         return res.status(401).send({ auth: false, token: 'Token is not provided' })
     }
 
+    const [, user] = tk.split(" ")
+
     try {
-        const decoded = await jwt.verify(tk, CONFIG_SECRET);
+        const decoded = await jwt.verify(user, CONFIG_SECRET);
         req.userId = decoded.id;
         next();
     } catch (error) {

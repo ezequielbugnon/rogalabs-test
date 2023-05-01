@@ -15,7 +15,7 @@
             "description": "API de test"
         },
         {
-            "url": "http://localhost:3000/api_test_rogalabs/v1/",
+            "url": "https://rogalabs-test-production.up.railway.app/api_test_rogalabs/v1/",
             "description": "API de produccion"
         }
     ],
@@ -49,6 +49,300 @@
                     }
                 }
             }
+        },
+        "/pessoa":{
+            "post": {
+                "sumary": "rota para inserir pessoa",
+                "description": "Essa rota sera responsável por inserir as informações da pessoa",
+                "tags": ["pessoa"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/pessoa"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "person inserted correctly"
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    },
+                    "400":{
+                        "description" : "invalid sent data"
+                    }
+                }
+            }
+        },
+        "/pessoa/":{
+            "get": {
+                "sumary": "rota para obter todas as pessoa",
+                "description": "Essa rota sera responsável por dar todas as informações das pessoas",
+                "tags": ["pessoa"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "404": {
+                        "description": "Person not found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/getPessoa"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    }
+                }
+            }
+        },
+        "/pessoa/{id}":{
+            "get": {
+                "sumary": "rota para obter uma pessoa",
+                "description": "Essa rota sera responsável por dar todas as informações da pessoa",
+                "tags": ["pessoa"],
+                "security": [{"bearerAuth": []}],
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id do usuario",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Person not found"
+                    },
+                    "200": {
+                        "description": "person inserted correctly"
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    }
+                }
+            }
+        },
+        "/pessoa/{idUpdate}":{
+            "patch": {
+                "sumary": "rota para atualizar pessoa",
+                "description": "Essa rota sera responsável por atualizar as informações da pessoa",
+                "tags": ["pessoa"],
+                "security": [{"bearerAuth": []}],
+                "parameters":[
+                    {
+                        "name": "idUpdate",
+                        "in": "path",
+                        "description": "id do usuario",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/pessoa"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "person updated correctly"
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    },
+                    "400":{
+                        "description" : "invalid sent data"
+                    },
+                    "404":{
+                        "description" : "person updated correctly"
+                    }
+                }
+            }
+        },
+        "/pessoa/{idDelete}":{
+            "delete": {
+                "sumary": "rota para eliminar pessoa",
+                "description": "Essa rota sera responsável por eliminar as informações da pessoa",
+                "tags": ["pessoa"],
+                "security": [{"bearerAuth": []}],
+                "parameters":[
+                    {
+                        "name": "idDelete",
+                        "in": "path",
+                        "description": "id do usuario",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "affectedRows: 1"
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    },
+                    "404":{
+                        "description" : "Person not found"
+                    }
+                }
+            }
+        },
+        "/anotacao":{
+            "post": {
+                "sumary": "rota para inserir anotacao",
+                "description": "Essa rota sera responsável por anotacao da pessoa",
+                "tags": ["anotacao"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/anotacao"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "annotation inserted correctly"
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    },
+                    "400":{
+                        "description" : "invalid sent data"
+                    }
+                }
+            }
+        },
+        "/anotacao/":{
+            "get": {
+                "sumary": "rota para obter todas as anotacao",
+                "description": "Essa rota sera responsável por dar todas as informações das pessoas e anotações",
+                "tags": ["anotacao"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "404": {
+                        "description": "Annotation not found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/getAnotacao"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    }
+                }
+            }
+        },
+        "/anotacao/{id}":{
+            "get": {
+                "sumary": "rota para obter uma anotacao",
+                "description": "Essa rota sera responsável por dar todas as informações da pessoa e seus anotações",
+                "tags": ["anotacao"],
+                "security": [{"bearerAuth": []}],
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id do anotacao",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Annotation not found"
+                    },
+                    "200": {
+                        "description": "Annotation inserted correctly"
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    }
+                }
+            }
+        },
+        "/anotacao/{idUpdate}":{
+            "patch": {
+                "sumary": "rota para atualizar uma anotacao",
+                "description": "Essa rota sera responsável por atualizar as informações da anotacao",
+                "tags": ["anotacao"],
+                "security": [{"bearerAuth": []}],
+                "parameters":[
+                    {
+                        "name": "idUpdate",
+                        "in": "path",
+                        "description": "id da anotacao",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/anotacao"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Annotation updated correctly"
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    },
+                    "400":{
+                        "description" : "invalid sent data"
+                    },
+                    "404":{
+                        "description" : "Annotation updated correctly"
+                    }
+                }
+            }
+        },
+        "/anotacao/{idDelete}":{
+            "delete": {
+                "sumary": "rota para eliminar uma anotacao",
+                "description": "Essa rota sera responsável por eliminar as informações da pessoa e seus anotações",
+                "tags": ["anotacao"],
+                "security": [{"bearerAuth": []}],
+                "parameters":[
+                    {
+                        "name": "idDelete",
+                        "in": "path",
+                        "description": "id da anotacao",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "affectedRows: 1"
+                    },
+                    "500": {
+                        "description" : "an error occurred"
+                    },
+                    "404":{
+                        "description" : "Annotation not found"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -59,7 +353,132 @@
                         "type": "string"
                     }
                 }
+            },
+            "anotacao": {
+                "properties": {
+                    "titulo": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "idPessoa": {
+                        "type": "string"
+                    }
+                }
+            },
+            "pessoa": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "momName": {
+                        "type": "string"
+                    },
+                    "dadName": {
+                        "type": "string"
+                    },
+                    "cep": {
+                        "type": "string"
+                    },
+                    "dateOfBirth": {
+                        "type": "string"
+                    }
+                }
+            },
+            "getPessoa": {
+                "type": "object",
+                "properties": {
+                    "Pessoas": {
+                        "type": "array",
+                        "items":{
+                            "type": "object",
+                            "properties":{
+                                "id": {
+                                    "type": "string"
+                                },
+                                "nome": {
+                                    "type": "string"
+                                },
+                                "nome_mae": {
+                                    "type": "string"
+                                },
+                                "nome_pai": {
+                                    "type": "string"
+                                },
+                                "cep": {
+                                    "type": "string"
+                                },
+                                "data_nascimento": {
+                                    "type": "string"
+                                },
+                                "data_cadastro": {
+                                    "type": "string"
+                                },
+                                "data_edicao": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            },
+            "getAnotacao": {
+                "type": "object",
+                "properties": {
+                    "Anotacao": {
+                        "type": "array",
+                        "items":{
+                            "type": "object",
+                            "properties":{
+                                "id": {
+                                    "type": "string"
+                                },
+                                "nome": {
+                                    "type": "string"
+                                },
+                                "nome_mae": {
+                                    "type": "string"
+                                },
+                                "nome_pai": {
+                                    "type": "string"
+                                },
+                                "cep": {
+                                    "type": "string"
+                                },
+                                "data_nascimento": {
+                                    "type": "string"
+                                },
+                                "data_cadastro": {
+                                    "type": "string"
+                                },
+                                "data_edicao": {
+                                    "type": "string"
+                                },
+                                "id_pessoa": {
+                                    "type": "string"
+                                },
+                                "titulo": {
+                                    "type": "string"
+                                },
+                                "descricao": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }
+   
 }
