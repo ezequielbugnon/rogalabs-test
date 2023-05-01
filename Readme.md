@@ -57,7 +57,7 @@ curl --request GET \
 ```markdown
 curl --request POST \
   --url https://rogalabs-test-production.up.railway.app/api_test_rogalabs/v1/pessoa \
-  --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZGFyZG8iLCJpYXQiOjE2ODI5MjA1MjMsImV4cCI6MTY4MjkzMTMyM30.ZY1tC-QOxk8pa3QynhJATSHtEWcS2L6xovvC4TOcy0k' \
+  --header 'Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZGFyZG8iLCJpYXQiOjE2ODI5MjA1MjMsImV4cCI6MTY4MjkzMTMyM30.ZY1tC-QOxk8pa3QynhJATSHtEWcS2L6xovvC4TOcy0k' \
   --header 'Content-Type: application/json' \
   --data '{
 	"name": "John Doe",
